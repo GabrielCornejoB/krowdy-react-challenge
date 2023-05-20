@@ -15,18 +15,14 @@ const Detail = () => {
     videoLink,
     handleExit,
   } = useRecording();
-  const {
-    toggleActivePage,
-    activeQuestion,
-    setActiveQuestion,
-    updateQuestionUrl,
-  } = useGlobalStore();
+  const { activeQuestion, setActiveQuestion, updateQuestionUrl } =
+    useGlobalStore();
   // const { nextIncomplete } = useQuestionNavigation();
 
   const handleGoToHome = () => {
     handleExit();
     setActiveQuestion(null);
-    toggleActivePage();
+    // toggleActivePage();
   };
   const handleRecording = () => {
     if (!isRecording) {

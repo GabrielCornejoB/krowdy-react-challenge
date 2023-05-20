@@ -2,12 +2,12 @@ import useGlobalStore from "@utils/store";
 import { Detail, Home } from "./features";
 
 function App() {
-  const isHomeActive = useGlobalStore((s) => s.isHomeActive);
+  const activeQuestion = useGlobalStore((s) => s.activeQuestion);
 
   return (
     <div className="flex justify-center">
       <div className="flex h-screen w-3/4 flex-col items-center justify-evenly">
-        {isHomeActive ? <Home /> : <Detail />}
+        {!activeQuestion ? <Home /> : <Detail />}
       </div>
     </div>
   );
