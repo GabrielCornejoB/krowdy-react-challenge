@@ -4,9 +4,9 @@ import { AiFillHome } from "react-icons/ai";
 
 const Detail = () => {
   const [isRecording, setIsRecording] = useState(false);
+
   const { toggleActivePage, activeQuestion, setActiveQuestion } =
     useGlobalStore();
-
   const handleGoToHome = () => {
     setActiveQuestion(null);
     toggleActivePage();
