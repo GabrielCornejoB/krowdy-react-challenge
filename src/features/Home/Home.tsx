@@ -1,3 +1,4 @@
+import { Button } from "../ui";
 import VideoCard from "./VideoCard";
 import { v4 as uuid } from "uuid";
 
@@ -17,9 +18,7 @@ const Home = () => {
         ))}
       </div>
       <div className="row flex w-full justify-end">
-        <button className="cursor-pointer rounded-md bg-sky-600 px-4 py-2 font-bold tracking-wider text-slate-200 transition-all hover:bg-sky-700">
-          SUBMIT
-        </button>
+        <Button text="SUBMIT" isMainColor={true} />
       </div>
     </>
   );

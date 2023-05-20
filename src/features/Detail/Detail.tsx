@@ -1,13 +1,11 @@
 import { useState } from "react";
-import { IconContext } from "react-icons";
-import { BsFillRecordFill } from "react-icons/bs";
 
 const Detail = () => {
   const [isRecording, setIsRecording] = useState(false);
 
   return (
     <>
-      <div className="relative flex w-full flex-col overflow-hidden rounded-2xl">
+      <div className="relative flex w-11/12 flex-col overflow-hidden rounded-2xl">
         <video src="" className="aspect-video bg-slate-500" />
         <div className="bg-slate-300 px-6 py-4 text-2xl font-semibold">
           <p>
