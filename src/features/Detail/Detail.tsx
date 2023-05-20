@@ -1,9 +1,11 @@
+import { useEffect, useState } from "react";
 import useGlobalStore from "@utils/store";
 import useRecording from "./useRecording";
 import { AiFillHome } from "react-icons/ai";
 import { RiSave3Fill } from "react-icons/ri";
 
 const Detail = () => {
+  const [time, setTime] = useState(0);
   const {
     isRecording,
     videoRef,
@@ -26,6 +28,7 @@ const Detail = () => {
   };
   const handleRecording = () => {
     if (!isRecording) {
+      if (time !== 0) setTime(0);
       handleStartRecording();
     } else {
       handleStopRecording();
@@ -37,6 +40,12 @@ const Detail = () => {
       handleGoToHome();
     } else alert("Not valid");
   };
+  useEffect(() => {
+    if (time === 120) handleStopRecording();
+    let interval: NodeJS.Timer;
+    if (isRecording) interval = setInterval(() => setTime(time + 1), 1000);
+    return () => clearInterval(interval);
+  }, [isRecording, time]);
 
   return (
     <div className="flex w-full flex-col items-center gap-8">
@@ -82,8 +91,8 @@ const Detail = () => {
             }`}
           ></div>
         </button>
-        <div className="absolute left-[37%] top-2 flex flex-row items-center gap-2 rounded-md bg-slate-500 px-2 py-1 text-white opacity-75">
-          <span>0:00 / 2:00</span>
+        <div className="absolute left-[36%] top-2 flex flex-row items-center gap-2 rounded-md bg-slate-500 px-2 py-1 text-white opacity-75">
+          <span>{time.toString().padStart(3, "0")}s / 120s</span>
           <div
             className={`aspect-square h-5 rounded-full bg-red-600 transition-transform ${
               isRecording && "animate-pulse"
