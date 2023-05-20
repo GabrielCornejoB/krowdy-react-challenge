@@ -1,14 +1,10 @@
-import { useState } from "react";
 import useGlobalStore, { Question } from "@utils/store";
-import { BsFillPlayFill, BsFillPauseFill } from "react-icons/bs";
 
 interface Props {
   question: Question;
 }
 
 const VideoCard = ({ question: q }: Props) => {
-  const [hasVideo] = useState(false);
-  const [isPlaying, setIsPlaying] = useState(false);
   const toggleActivePage = useGlobalStore((s) => s.toggleActivePage);
   const setActiveQuestion = useGlobalStore((s) => s.setActiveQuestion);
 
@@ -16,16 +12,15 @@ const VideoCard = ({ question: q }: Props) => {
     setActiveQuestion(q);
     toggleActivePage();
   };
-
-  const handleIsPlaying = () => {
-    if (hasVideo) setIsPlaying(!isPlaying);
-  };
-
   return (
-    <div className="relative flex h-80 min-w-[240px] max-w-[240px] flex-col justify-between overflow-hidden rounded-md ">
-      <video src="" className="grow bg-slate-800"></video>
+    <div className="relative flex h-80 min-w-[320px] max-w-[320px] flex-col justify-between overflow-hidden rounded-md ">
+      <video
+        src={q.url}
+        controls={!!q.url}
+        className={`aspect-[4/3] bg-slate-800 ${!q.url && "opacity-60"}`}
+      ></video>
       <div
-        className="cursor-pointer bg-slate-300 px-4 py-2 font-medium text-slate-900 transition-colors hover:bg-slate-200"
+        className="flex grow cursor-pointer items-center bg-slate-300 px-4 py-2 font-medium text-slate-900 transition-colors hover:bg-slate-200"
         onClick={handleGoToDetail}
         title={q.question}
       >
@@ -35,16 +30,6 @@ const VideoCard = ({ question: q }: Props) => {
             : `${q.question.slice(0, 50)}...`}
         </p>
       </div>
-      <button
-        className={`absolute grid h-10 w-10 translate-x-2 translate-y-52 place-items-center rounded-full bg-slate-300 text-2xl text-slate-900 transition-all duration-200 ${
-          hasVideo
-            ? "cursor-pointer hover:bg-slate-200"
-            : "cursor-not-allowed opacity-50"
-        }`}
-        onClick={handleIsPlaying}
-      >
-        {isPlaying ? <BsFillPauseFill /> : <BsFillPlayFill />}
-      </button>
     </div>
   );
 };

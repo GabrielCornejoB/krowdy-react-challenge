@@ -1,6 +1,7 @@
 import useGlobalStore from "@utils/store";
 import useRecording from "./useRecording";
 import { AiFillHome } from "react-icons/ai";
+import { RiSave3Fill } from "react-icons/ri";
 
 const Detail = () => {
   const {
@@ -11,8 +12,12 @@ const Detail = () => {
     videoLink,
     handleExit,
   } = useRecording();
-  const { toggleActivePage, activeQuestion, setActiveQuestion } =
-    useGlobalStore();
+  const {
+    toggleActivePage,
+    activeQuestion,
+    setActiveQuestion,
+    updateQuestionUrl,
+  } = useGlobalStore();
 
   const handleGoToHome = () => {
     handleExit();
@@ -26,15 +31,29 @@ const Detail = () => {
       handleStopRecording();
     }
   };
+  const handleSaveVideo = () => {
+    if (activeQuestion && videoLink) {
+      updateQuestionUrl(activeQuestion.id, videoLink);
+      handleGoToHome();
+    } else alert("Not valid");
+  };
 
   return (
     <div className="flex w-full flex-col items-center gap-8">
-      <button
-        className="flex w-11/12 cursor-pointer flex-row items-center justify-center  text-5xl text-slate-600"
-        onClick={handleGoToHome}
-      >
-        <AiFillHome className=" transition-colors duration-300 hover:text-slate-950" />
-      </button>
+      <div className="flex w-11/12 flex-row justify-between">
+        <button
+          onClick={handleGoToHome}
+          className="grid cursor-pointer place-items-center text-5xl text-slate-600 transition-colors duration-300 hover:text-slate-950"
+        >
+          <AiFillHome />
+        </button>
+        <button
+          onClick={handleSaveVideo}
+          className="grid cursor-pointer place-items-center text-5xl text-slate-600 transition-colors duration-300 hover:text-slate-950"
+        >
+          <RiSave3Fill />
+        </button>
+      </div>
       <div className="relative flex w-11/12 flex-col overflow-hidden rounded-2xl">
         <div className="flex flex-row">
           <video
@@ -54,8 +73,8 @@ const Detail = () => {
           <p>{activeQuestion?.question}</p>
         </div>
         <button
-          className="group absolute bottom-20 left-4 grid h-14 w-14 cursor-pointer place-items-center rounded-full border-4 border-red-600"
           onClick={handleRecording}
+          className="group absolute bottom-20 left-4 grid h-14 w-14 cursor-pointer place-items-center rounded-full border-4 border-red-600"
         >
           <div
             className={`aspect-square  bg-red-600 transition-all duration-500 group-hover:h-1/2 group-hover:rounded-md ${

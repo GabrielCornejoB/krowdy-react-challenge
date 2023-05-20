@@ -15,6 +15,7 @@ interface GlobalStore {
   activeQuestion: Question | null;
   toggleActivePage: () => void;
   setActiveQuestion: (question: Question | null) => void;
+  updateQuestionUrl: (id: string, url: string) => void;
 }
 
 const defaultQuestions: Question[] = questionList.map((q) => ({
@@ -31,6 +32,12 @@ const useGlobalStore = create<GlobalStore>((set) => ({
     set((store) => ({ isHomeActive: !store.isHomeActive })),
   setActiveQuestion: (question: Question | null) =>
     set(() => ({ activeQuestion: question })),
+  updateQuestionUrl: (id: string, url: string) =>
+    set((store) => ({
+      questions: store.questions.map((q) =>
+        q.id == id ? { ...q, url: url } : q
+      ),
+    })),
 }));
 
 if (process.env.NODE_ENV === "development")
