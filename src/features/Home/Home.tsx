@@ -10,7 +10,7 @@ const Home = () => {
     <>
       <h1 className=" text-4xl font-bold">Video Questionnaire</h1>
       <div
-        className={`flex w-full flex-row gap-3 overflow-x-scroll pb-3 ${
+        className={`flex w-full flex-row gap-3 overflow-x-scroll pb-3 scrollbar scrollbar-track-transparent scrollbar-thumb-slate-300 ${
           questions.length < 4 && "justify-center"
         }`}
       >
