@@ -1,15 +1,30 @@
 import useGlobalStore from "@utils/store";
-import { useState } from "react";
+import useRecording from "./useRecording";
 import { AiFillHome } from "react-icons/ai";
 
 const Detail = () => {
-  const [isRecording, setIsRecording] = useState(false);
-
+  const {
+    isRecording,
+    videoRef,
+    handleStartRecording,
+    handleStopRecording,
+    videoLink,
+    handleExit,
+  } = useRecording();
   const { toggleActivePage, activeQuestion, setActiveQuestion } =
     useGlobalStore();
+
   const handleGoToHome = () => {
+    handleExit();
     setActiveQuestion(null);
     toggleActivePage();
+  };
+  const handleRecording = () => {
+    if (!isRecording) {
+      handleStartRecording();
+    } else {
+      handleStopRecording();
+    }
   };
 
   return (
@@ -21,13 +36,19 @@ const Detail = () => {
         <AiFillHome className=" transition-colors duration-300 hover:text-slate-950" />
       </button>
       <div className="relative flex w-11/12 flex-col overflow-hidden rounded-2xl">
-        <video src="" className="aspect-video bg-slate-500" />
+        <video
+          ref={videoRef}
+          autoPlay
+          muted
+          playsInline
+          className="aspect-video bg-slate-500"
+        />
         <div className="bg-slate-300 px-6 py-4 text-2xl font-semibold">
           <p>{activeQuestion?.question}</p>
         </div>
         <button
           className="group absolute bottom-20 left-4 grid h-14 w-14 cursor-pointer place-items-center rounded-full border-4 border-white"
-          onClick={() => setIsRecording(!isRecording)}
+          onClick={handleRecording}
         >
           <div
             className={`aspect-square  bg-red-600 transition-all duration-500 group-hover:h-1/2 group-hover:rounded-md ${
@@ -52,6 +73,7 @@ const Detail = () => {
           Next
         </button>
       </div>
+      {videoLink && <video src={videoLink} controls></video>}
     </div>
   );
 };

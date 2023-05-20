@@ -67,12 +67,21 @@ const useRecording = () => {
     prepareStream();
   }, [audioSource, videoSource]);
 
-  return [
+  const handleExit = () => {
+    if (streamRef.current)
+      streamRef.current.getTracks().forEach((t) => {
+        t.stop();
+      });
+    if (videoRef.current) videoRef.current.srcObject = null;
+  };
+
+  return {
     videoRef,
     handleStartRecording,
     handleStopRecording,
     isRecording,
     videoLink,
-  ];
+    handleExit,
+  };
 };
 export default useRecording;
