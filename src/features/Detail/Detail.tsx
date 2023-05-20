@@ -1,14 +1,19 @@
 import { useState } from "react";
+import { useGlobalStore } from "@utils/store";
 import { Button } from "../ui";
 import { AiFillHome } from "react-icons/ai";
 
 const Detail = () => {
   const [isRecording, setIsRecording] = useState(false);
+  const toggleActivePage = useGlobalStore((s) => s.toggleActivePage);
 
   return (
     <div className="flex w-full flex-col items-center gap-8">
-      <button className="flex w-11/12 cursor-pointer flex-row justify-center text-5xl text-slate-600">
-        <AiFillHome className="rounded-full border-4 border-slate-600 p-1 transition-colors duration-300 hover:border-slate-950 hover:text-slate-950" />
+      <button
+        className="flex w-11/12 cursor-pointer flex-row items-center justify-center  text-5xl text-slate-600"
+        onClick={toggleActivePage}
+      >
+        <AiFillHome className=" transition-colors duration-300 hover:text-slate-950" />
       </button>
       <div className="relative flex w-11/12 flex-col overflow-hidden rounded-2xl">
         <video src="" className="aspect-video bg-slate-500" />

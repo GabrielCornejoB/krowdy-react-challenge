@@ -1,6 +1,6 @@
+import { v4 as uuid } from "uuid";
 import { Button } from "../ui";
 import VideoCard from "./VideoCard";
-import { v4 as uuid } from "uuid";
 
 const Home = () => {
   const arr = [1, 1, 1, 1, 1, 1];
