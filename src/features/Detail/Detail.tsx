@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useGlobalStore } from "@utils/store";
-import { Button } from "../ui";
 import { AiFillHome } from "react-icons/ai";
 
 const Detail = () => {
@@ -44,8 +43,12 @@ const Detail = () => {
         </div>
       </div>
       <div className="flex w-11/12 flex-row justify-between">
-        <Button text="Previous" isMainColor={false} />
-        <Button text="Next" isMainColor />
+        <button className="cursor-pointer rounded-md bg-slate-500 px-4 py-2 font-bold tracking-wider text-slate-200 first-line:transition-all hover:bg-slate-700">
+          Previous
+        </button>
+        <button className="cursor-pointer rounded-md bg-sky-600 px-4 py-2 font-bold tracking-wider text-slate-200 first-line:transition-all hover:bg-sky-700">
+          Next
+        </button>
       </div>
     </div>
   );
