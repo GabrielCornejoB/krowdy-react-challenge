@@ -81,6 +81,7 @@ const useRecording = () => {
     handleStopRecording,
     isRecording,
     videoLink,
+    setVideoLink,
     handleExit,
   };
 };

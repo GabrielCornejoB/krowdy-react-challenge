@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import useGlobalStore from "@utils/store";
-import useRecording from "./useRecording";
+import useRecording from "./hooks/useRecording";
+import { toast } from "sonner";
 import { AiFillHome } from "react-icons/ai";
 import { RiSave3Fill } from "react-icons/ri";
 
@@ -20,6 +21,7 @@ const Detail = () => {
     setActiveQuestion,
     updateQuestionUrl,
   } = useGlobalStore();
+  // const { nextIncomplete } = useQuestionNavigation();
 
   const handleGoToHome = () => {
     handleExit();
@@ -37,14 +39,19 @@ const Detail = () => {
   const handleSaveVideo = () => {
     if (activeQuestion && videoLink) {
       updateQuestionUrl(activeQuestion.id, videoLink);
-      handleGoToHome();
-    } else alert("Not valid");
+      toast("Recording saved succesfully!");
+    } else toast.error("Cannot save recording yet!");
   };
+  // const handleNextQuestion = () => {
+  //   if (nextIncomplete) setActiveQuestion(nextIncomplete);
+  //   else handleGoToHome();
+  // };
   useEffect(() => {
     if (time === 120) handleStopRecording();
     let interval: NodeJS.Timer;
     if (isRecording) interval = setInterval(() => setTime(time + 1), 1000);
     return () => clearInterval(interval);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isRecording, time]);
 
   return (
@@ -99,14 +106,6 @@ const Detail = () => {
             }`}
           ></div>
         </div>
-      </div>
-      <div className="flex w-11/12 flex-row justify-between">
-        <button className="cursor-pointer rounded-md bg-slate-500 px-4 py-2 font-bold tracking-wider text-slate-200 first-line:transition-all hover:bg-slate-700">
-          Previous
-        </button>
-        <button className="cursor-pointer rounded-md bg-sky-600 px-4 py-2 font-bold tracking-wider text-slate-200 first-line:transition-all hover:bg-sky-700">
-          Next
-        </button>
       </div>
     </div>
   );
