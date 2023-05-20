@@ -4,27 +4,29 @@ import { AiFillHome } from "react-icons/ai";
 
 const Detail = () => {
   const [isRecording, setIsRecording] = useState(false);
-  const toggleActivePage = useGlobalStore((s) => s.toggleActivePage);
+  const { toggleActivePage, activeQuestion, setActiveQuestion } =
+    useGlobalStore();
+
+  const handleGoToHome = () => {
+    setActiveQuestion(null);
+    toggleActivePage();
+  };
 
   return (
     <div className="flex w-full flex-col items-center gap-8">
       <button
         className="flex w-11/12 cursor-pointer flex-row items-center justify-center  text-5xl text-slate-600"
-        onClick={toggleActivePage}
+        onClick={handleGoToHome}
       >
         <AiFillHome className=" transition-colors duration-300 hover:text-slate-950" />
       </button>
       <div className="relative flex w-11/12 flex-col overflow-hidden rounded-2xl">
         <video src="" className="aspect-video bg-slate-500" />
         <div className="bg-slate-300 px-6 py-4 text-2xl font-semibold">
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Reprehenderit expedita officiis porro dolorum quo eos culpa odio
-            velit voluptas in.
-          </p>
+          <p>{activeQuestion?.question}</p>
         </div>
         <button
-          className="group absolute bottom-28 left-4 grid h-14 w-14 cursor-pointer place-items-center rounded-full border-4 border-white"
+          className="group absolute bottom-20 left-4 grid h-14 w-14 cursor-pointer place-items-center rounded-full border-4 border-white"
           onClick={() => setIsRecording(!isRecording)}
         >
           <div

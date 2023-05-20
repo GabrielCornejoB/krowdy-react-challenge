@@ -4,3 +4,4 @@ export default [
   "Where do you see yourself in five years?",
   "How often do you buy clothes?",
 ];
+// Use min 4 questions

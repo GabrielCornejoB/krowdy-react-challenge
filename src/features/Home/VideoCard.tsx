@@ -7,9 +7,15 @@ interface Props {
 }
 
 const VideoCard = ({ question: q }: Props) => {
-  const [hasVideo, setHasVideo] = useState(false);
+  const [hasVideo] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const toggleActivePage = useGlobalStore((s) => s.toggleActivePage);
+  const setActiveQuestion = useGlobalStore((s) => s.setActiveQuestion);
+
+  const handleGoToDetail = () => {
+    setActiveQuestion(q);
+    toggleActivePage();
+  };
 
   const handleIsPlaying = () => {
     if (hasVideo) setIsPlaying(!isPlaying);
@@ -20,7 +26,7 @@ const VideoCard = ({ question: q }: Props) => {
       <video src="" className="grow bg-slate-800"></video>
       <div
         className="cursor-pointer bg-slate-300 px-4 py-2 font-medium text-slate-900 transition-colors hover:bg-slate-200"
-        onClick={toggleActivePage}
+        onClick={handleGoToDetail}
         title={q.question}
       >
         <p>

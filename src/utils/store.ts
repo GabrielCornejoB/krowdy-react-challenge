@@ -11,7 +11,9 @@ export interface Question {
 interface GlobalStore {
   isHomeActive: boolean;
   questions: Question[];
+  activeQuestion: Question | null;
   toggleActivePage: () => void;
+  setActiveQuestion: (question: Question | null) => void;
 }
 
 const defaultQuestions: Question[] = questionList.map((q) => ({
@@ -23,6 +25,9 @@ const defaultQuestions: Question[] = questionList.map((q) => ({
 export const useGlobalStore = create<GlobalStore>((set) => ({
   isHomeActive: true,
   questions: defaultQuestions,
+  activeQuestion: null,
   toggleActivePage: () =>
     set((store) => ({ isHomeActive: !store.isHomeActive })),
+  setActiveQuestion: (question: Question | null) =>
+    set(() => ({ activeQuestion: question })),
 }));
