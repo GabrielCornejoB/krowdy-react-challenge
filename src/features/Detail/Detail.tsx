@@ -36,18 +36,25 @@ const Detail = () => {
         <AiFillHome className=" transition-colors duration-300 hover:text-slate-950" />
       </button>
       <div className="relative flex w-11/12 flex-col overflow-hidden rounded-2xl">
-        <video
-          ref={videoRef}
-          autoPlay
-          muted
-          playsInline
-          className="aspect-video bg-slate-500"
-        />
+        <div className="flex flex-row">
+          <video
+            ref={videoRef}
+            autoPlay
+            muted
+            playsInline
+            className="aspect-[4/3] w-1/2 bg-slate-500"
+          />
+          <video
+            src={videoLink ? videoLink : undefined}
+            controls
+            className="aspect-[4/3] w-1/2 bg-slate-500"
+          ></video>
+        </div>
         <div className="bg-slate-300 px-6 py-4 text-2xl font-semibold">
           <p>{activeQuestion?.question}</p>
         </div>
         <button
-          className="group absolute bottom-20 left-4 grid h-14 w-14 cursor-pointer place-items-center rounded-full border-4 border-white"
+          className="group absolute bottom-20 left-4 grid h-14 w-14 cursor-pointer place-items-center rounded-full border-4 border-red-600"
           onClick={handleRecording}
         >
           <div
@@ -56,7 +63,7 @@ const Detail = () => {
             }`}
           ></div>
         </button>
-        <div className="absolute right-6 top-4 flex flex-row items-center gap-2">
+        <div className="absolute left-[37%] top-2 flex flex-row items-center gap-2 rounded-md bg-slate-500 px-2 py-1 text-white opacity-75">
           <span>0:00 / 2:00</span>
           <div
             className={`aspect-square h-5 rounded-full bg-red-600 transition-transform ${
@@ -73,7 +80,6 @@ const Detail = () => {
           Next
         </button>
       </div>
-      {videoLink && <video src={videoLink} controls></video>}
     </div>
   );
 };
