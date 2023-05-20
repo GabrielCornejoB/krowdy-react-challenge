@@ -18,7 +18,7 @@ const Home = () => {
         ))}
       </div>
       <div className="row flex w-full justify-end">
-        <Button text="SUBMIT" isMainColor={true} />
+        <Button text="SUBMIT" isMainColor />
       </div>
     </>
   );

@@ -1,10 +1,15 @@
 import { useState } from "react";
+import { Button } from "../ui";
+import { AiFillHome } from "react-icons/ai";
 
 const Detail = () => {
   const [isRecording, setIsRecording] = useState(false);
 
   return (
-    <>
+    <div className="flex w-full flex-col items-center gap-8">
+      <button className="flex w-11/12 cursor-pointer flex-row justify-center text-5xl text-slate-600">
+        <AiFillHome className="rounded-full border-4 border-slate-600 p-1 transition-colors duration-300 hover:border-slate-950 hover:text-slate-950" />
+      </button>
       <div className="relative flex w-11/12 flex-col overflow-hidden rounded-2xl">
         <video src="" className="aspect-video bg-slate-500" />
         <div className="bg-slate-300 px-6 py-4 text-2xl font-semibold">
@@ -33,7 +38,11 @@ const Detail = () => {
           ></div>
         </div>
       </div>
-    </>
+      <div className="flex w-11/12 flex-row justify-between">
+        <Button text="Previous" isMainColor={false} />
+        <Button text="Next" isMainColor />
+      </div>
+    </div>
   );
 };
 export default Detail;
