@@ -26,6 +26,14 @@ const Detail = () => {
             }`}
           ></div>
         </button>
+        <div className="absolute right-6 top-4 flex flex-row items-center gap-2">
+          <span>0:00 / 2:00</span>
+          <div
+            className={`aspect-square h-5 rounded-full bg-red-600 transition-transform ${
+              isRecording && "animate-pulse"
+            }`}
+          ></div>
+        </div>
       </div>
     </>
   );
