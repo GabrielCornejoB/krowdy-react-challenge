@@ -1,4 +1,4 @@
-import { useGlobalStore } from "./utils";
+import useGlobalStore from "@utils/store";
 import { Detail, Home } from "./features";
 
 function App() {

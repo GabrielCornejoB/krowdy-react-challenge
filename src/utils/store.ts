@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { mountStoreDevtool } from "simple-zustand-devtools";
 import { v4 as uuid } from "uuid";
 import questionList from "./questions";
 
@@ -22,7 +23,7 @@ const defaultQuestions: Question[] = questionList.map((q) => ({
   url: "",
 }));
 
-export const useGlobalStore = create<GlobalStore>((set) => ({
+const useGlobalStore = create<GlobalStore>((set) => ({
   isHomeActive: true,
   questions: defaultQuestions,
   activeQuestion: null,
@@ -31,3 +32,8 @@ export const useGlobalStore = create<GlobalStore>((set) => ({
   setActiveQuestion: (question: Question | null) =>
     set(() => ({ activeQuestion: question })),
 }));
+
+if (process.env.NODE_ENV === "development")
+  mountStoreDevtool("Global Store", useGlobalStore);
+
+export default useGlobalStore;

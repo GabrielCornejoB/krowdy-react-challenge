@@ -1,6 +1,6 @@
 import { v4 as uuid } from "uuid";
+import useGlobalStore from "@utils/store";
 import VideoCard from "./VideoCard";
-import { useGlobalStore } from "@utils/store";
 
 const Home = () => {
   const questions = useGlobalStore((s) => s.questions);

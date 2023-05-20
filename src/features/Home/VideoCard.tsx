@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Question, useGlobalStore } from "@utils/store";
+import useGlobalStore, { Question } from "@utils/store";
 import { BsFillPlayFill, BsFillPauseFill } from "react-icons/bs";
 
 interface Props {

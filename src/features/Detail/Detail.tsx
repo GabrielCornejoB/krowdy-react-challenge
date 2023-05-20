@@ -1,5 +1,5 @@
+import useGlobalStore from "@utils/store";
 import { useState } from "react";
-import { useGlobalStore } from "@utils/store";
 import { AiFillHome } from "react-icons/ai";
 
 const Detail = () => {
