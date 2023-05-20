@@ -8,7 +8,7 @@ const VideoCard = ({ question: q }: Props) => {
   const setActiveQuestion = useGlobalStore((s) => s.setActiveQuestion);
 
   const handleGoToDetail = () => {
-    setActiveQuestion(q);
+    setActiveQuestion(q.id);
   };
   return (
     <div className="relative flex h-80 min-w-[320px] max-w-[320px] flex-col justify-between overflow-hidden rounded-md ">

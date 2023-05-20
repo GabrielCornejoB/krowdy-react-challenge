@@ -11,8 +11,8 @@ export interface Question {
 
 interface GlobalStore {
   questions: Question[];
-  activeQuestion: Question | null;
-  setActiveQuestion: (question: Question | null) => void;
+  activeQuestionId: string | null;
+  setActiveQuestion: (id: string | null) => void;
   updateQuestionUrl: (id: string, url: string) => void;
 }
 
@@ -24,9 +24,9 @@ const defaultQuestions: Question[] = questionList.map((q) => ({
 
 const useGlobalStore = create<GlobalStore>((set) => ({
   questions: defaultQuestions,
-  activeQuestion: null,
-  setActiveQuestion: (question: Question | null) =>
-    set(() => ({ activeQuestion: question })),
+  activeQuestionId: null,
+  setActiveQuestion: (id: string | null) =>
+    set(() => ({ activeQuestionId: id })),
   updateQuestionUrl: (id: string, url: string) =>
     set((store) => ({
       questions: store.questions.map((q) =>

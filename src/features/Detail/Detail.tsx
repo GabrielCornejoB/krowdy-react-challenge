@@ -4,26 +4,24 @@ import useRecording from "./hooks/useRecording";
 import { toast } from "sonner";
 import { AiFillHome } from "react-icons/ai";
 import { RiSave3Fill } from "react-icons/ri";
+import useQuestionNavigation from "./hooks/useQuestionNavigation";
 
 const Detail = () => {
   const [time, setTime] = useState(0);
+
   const {
     isRecording,
     videoRef,
     handleStartRecording,
     handleStopRecording,
     videoLink,
+    setVideoLink,
     handleExit,
   } = useRecording();
-  const { activeQuestion, setActiveQuestion, updateQuestionUrl } =
+  const { activeQuestionId, updateQuestionUrl, setActiveQuestion, questions } =
     useGlobalStore();
-  // const { nextIncomplete } = useQuestionNavigation();
-
-  const handleGoToHome = () => {
-    handleExit();
-    setActiveQuestion(null);
-    // toggleActivePage();
-  };
+  const question = questions.find((q) => q.id === activeQuestionId);
+  const { nextIncomplete } = useQuestionNavigation();
   const handleRecording = () => {
     if (!isRecording) {
       if (time !== 0) setTime(0);
@@ -33,15 +31,22 @@ const Detail = () => {
     }
   };
   const handleSaveVideo = () => {
-    if (activeQuestion && videoLink) {
-      updateQuestionUrl(activeQuestion.id, videoLink);
+    if (activeQuestionId && videoLink) {
+      updateQuestionUrl(activeQuestionId, videoLink);
       toast("Recording saved succesfully!");
     } else toast.error("Cannot save recording yet!");
   };
-  // const handleNextQuestion = () => {
-  //   if (nextIncomplete) setActiveQuestion(nextIncomplete);
-  //   else handleGoToHome();
-  // };
+  const handleGoToHome = () => {
+    handleExit();
+    setActiveQuestion(null);
+  };
+  const handleNextQuestion = () => {
+    if (nextIncomplete) {
+      setActiveQuestion(nextIncomplete.id);
+      setVideoLink(" ");
+    } else handleGoToHome();
+  };
+
   useEffect(() => {
     if (time === 120) handleStopRecording();
     let interval: NodeJS.Timer;
@@ -49,6 +54,9 @@ const Detail = () => {
     return () => clearInterval(interval);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isRecording, time]);
+  useEffect(() => {
+    if (question) setVideoLink(question?.url);
+  }, []);
 
   return (
     <div className="flex w-full flex-col items-center gap-8">
@@ -82,7 +90,7 @@ const Detail = () => {
           ></video>
         </div>
         <div className="bg-slate-300 px-6 py-4 text-2xl font-semibold">
-          <p>{activeQuestion?.question}</p>
+          <p>{question?.question}</p>
         </div>
         <button
           onClick={handleRecording}
@@ -103,6 +111,16 @@ const Detail = () => {
           ></div>
         </div>
       </div>
+      <button
+        onClick={handleNextQuestion}
+        className={`cursor-pointer rounded-md bg-sky-600 px-4 py-2 font-bold tracking-wider text-slate-200 first-line:transition-all ${
+          nextIncomplete
+            ? "bg-slate-500 hover:bg-slate-700"
+            : "hover:bg-sky-700"
+        } `}
+      >
+        {nextIncomplete ? "Next Question" : "Go Back To Home"}
+      </button>
     </div>
   );
 };
