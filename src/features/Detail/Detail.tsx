@@ -31,7 +31,8 @@ const Detail = () => {
     }
   };
   const handleSaveVideo = () => {
-    if (activeQuestionId && videoLink) {
+    if (videoLink == " ") toast.error("Cannot save recording yet!");
+    else if (activeQuestionId && videoLink) {
       updateQuestionUrl(activeQuestionId, videoLink);
       toast("Recording saved succesfully!");
     } else toast.error("Cannot save recording yet!");
