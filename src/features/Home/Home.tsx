@@ -1,4 +1,5 @@
 import { v4 as uuid } from "uuid";
+import { toast } from "sonner";
 import useGlobalStore from "@utils/store";
 import VideoCard from "./VideoCard";
 
@@ -7,7 +8,7 @@ const Home = () => {
 
   const handleSubmit = () => {
     if (questions.every((q) => q.url)) {
-      alert("hola");
+      toast.success("You finished!, press F5 to restart");
     }
   };
 

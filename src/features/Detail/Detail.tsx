@@ -56,6 +56,7 @@ const Detail = () => {
   }, [isRecording, time]);
   useEffect(() => {
     if (question) setVideoLink(question?.url);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
