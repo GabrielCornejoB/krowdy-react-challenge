@@ -103,7 +103,7 @@ const Detail = () => {
             }`}
           ></div>
         </button>
-        <div className="absolute left-[36%] top-2 flex flex-row items-center gap-2 rounded-md bg-slate-500 px-2 py-1 text-white opacity-75">
+        <div className="absolute left-2 top-2 flex flex-row items-center gap-2 rounded-md bg-slate-500 px-2 py-1 text-white opacity-75">
           <span>{time.toString().padStart(3, "0")}s / 120s</span>
           <div
             className={`aspect-square h-5 rounded-full bg-red-600 transition-transform ${
