@@ -12,6 +12,8 @@ The challenge consists in creating a Video Questionnarie Web Application made wi
 
 [How to install](#how-to-install)
 
+[Customization](#how-to-customize-number-of-questions)
+
 ## **Tools and Requirements**
 
 The following tools were used for the creation of this project:
@@ -89,3 +91,21 @@ You can view the website live in the link in the description or at the beginning
 
     # Run the app
     $ npm run dev
+
+## **How to customize number of questions**
+
+As I said earlier, you can customize the number of questions in the App, it can be done by modifying the following file:
+
+```javascript
+// krowdy-react-challenge/src/utils/questions.ts
+
+export default [
+  "What is your favorite movie from your childhood?",
+  "If you could live anywhere, where would it be?",
+  "Where do you see yourself in five years?",
+  "How often do you buy clothes?",
+  /* Here you can add your own custom questions */
+];
+```
+
+By default there are 4 questions, but you can change it the number of questions that you like.
