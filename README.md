@@ -2,7 +2,17 @@
 
 The following repo contains my solution for the second challenge of the Web Development Bootcamp by [Krowdy Academy](https://www.krowdy.com/).
 
-The challenge consists in creating a Video Questionnarie Web Application made with React. The main purpose was to understand the native WebRTC API and translate it to React code.
+The challenge consists in creating a Video Questionnarie Web Application made with React. The main purpose was to understand the native WebRTC API and translate it to React code. You can check it out live [here](https://gabrielcornejob.github.io/krowdy-react-challenge/).
+
+[Tools and Requirements](#tools-and-requirements)
+
+[Evidences](#evidences)
+
+[Main Challenges / Obstacles](#main-challengesobstacles)
+
+[How to install](#how-to-install)
+
+## **Tools and Requirements**
 
 The following tools were used for the creation of this project:
 
@@ -63,3 +73,19 @@ All of the previous requirements were satisfied. In following images you can see
 - Well the first thing was understading WebRTC, all of its documentation was for VanillaJS, and it was kinda hard to translate it to React. At the end, refs saved me haha.
 - Then, managing state, for this exercise I used zustand, which is a state-management library with very few boilerplate and is not as heavy as redux. Still I had like 3 versions of stores before defining the one that I ended up with.
 - Understaing tailwind, In the past i've seen tailwind tutorials and really didn't get it as I've never used it, for this exercise I wanted to challenge myself to use it, and I loved it, it makes my coding way faster.
+
+## **How to install**
+
+You can view the website live in the link in the description or at the beginning of this readme, but if you wanna try it locally, follow this guide:
+
+    # Clone this repo
+    $ git clone https://github.com/GabrielCornejoB/krowdy-react-challenge
+
+    # Enter the folder with the clone
+    $ cd ./krowdy-react-challenge
+
+    # Install dependencies
+    $ npm install
+
+    # Run the app
+    $ npm run dev
